@@ -1,0 +1,41 @@
+Collecting Job Data Using APIs
+
+  Change the data of number of job posting to int to find the answer of how many job post in Python
+  
+Data Wrangling Lab
+
+  Finding duplicates
+    #print(df.duplicated()) normal to find duplicated
+    #print(df[df.duplicated()]) list all thing around the dulplicated
+    #print(df.duplicated(keep='last')) the duplicated show False
+    # print(df.duplicated(keep=False))the duplicated show True
+    # count the duplicated 
+    # can use this df.duplicated().sum() 
+    print(df.duplicated().value_counts())
+    
+  Removing duplicates
+    # all columns
+    df.drop_duplicates()
+    # on specific columns 
+    # df.drop_duplicates(subset=['name_of_columns '])
+    #remove duplicates and keep last occurrences,
+    #df.drop_duplicates(subset=['name_of_columns', 'name_of_columns'], keep='last')
+    
+   Data Visualization Lab
+    Find the most use database
+      import pandas as pd
+      import numpy as np
+      import matplotlib.pyplot as plt
+      df3 = pd.read_sql_query("SELECT * FROM DatabaseWorkedWith",conn)
+      df3.columns
+      df3.groupby("Respondent").count()
+      df3.groupby("DatabaseWorkedWith").count()
+      z = pd.DataFrame(df3.groupby("DatabaseWorkedWith").count())
+      z.sort_values(by="Respondent", ascending=False)
+      z = z.nlargest(5,"Respondent")
+      z.plot(kind='bar',align='center',alpha=0.5, stacked=False,figsize=(20, 10))
+      plt.title("TOP 5 DATABASES FOR THE CURRENT YEAR")
+      plt.xlabel('DESIRING DATABASES')
+      plt.ylabel('NUMBER OF PEOPLE',)
+      z.plot.show()
+   
